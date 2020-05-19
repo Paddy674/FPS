@@ -7,11 +7,13 @@ public class RocketLauncher : MonoBehaviour
 
     public bool playerControlled = true;            //is thjis RocketLauncher controlled by the player?
     public float fireInterval = 3.0f;               //how many seconds between shots for this rocket launcher?
+    public Rigidbody m_Rocket;
+    public Transform m_FireTransform;
+    public float m_LaunchForce = 30f;
 
     private float fireTimer = 0;                    //keep track of when we can fire again
 
     public GameObject rocketPrefab;                 //reference to Rocket prefab so we can spawn it
-    public Vector3 spawnOffset;                     //a position offset for where the rocket is spawned so that we don't spawn inside the gun
 
     public int ammo = 10;                           //number of rockets player has
 
@@ -42,11 +44,10 @@ public class RocketLauncher : MonoBehaviour
             return;
         }
 
-        GameObject rocketInstance = Instantiate(rocketPrefab);      //spawn and store a new rocket prefab
+        Rigidbody rocketInstance = Instantiate(m_Rocket, m_FireTransform.position, m_FireTransform.rotation) as Rigidbody;
 
+        rocketInstance.velocity = m_LaunchForce * m_FireTransform.forward;
 
-        rocketInstance.transform.position = transform.position + spawnOffset;   //apply the spawn offset relative to the gun position
-        rocketInstance.transform.rotation = transform.rotation;                 //rotate the rocket to match the guns rotation
 
         fireTimer = 0;                                                          //reset the fire timer
         ammo -= 1;                                                              //reduce ammo count
