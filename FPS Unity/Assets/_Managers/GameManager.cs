@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public Text m_MessageText;
     public Text m_AmmoText;
+    public int ammo;
 
 
 
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
                 int seconds = Mathf.RoundToInt(m_gameTime);
 
                 //set format for Ammo??
+
 
                 if (OneCharacterLeft() == true)
                 {
