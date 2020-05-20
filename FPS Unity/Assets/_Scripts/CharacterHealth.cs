@@ -7,7 +7,8 @@ public class CharacterHealth : MonoBehaviour
 {
     public float m_StartingHealth = 100f;
 
-        public GameObject m_ExplosionPrefab;
+    public GameObject m_ExplosionPrefab;
+    public GameObject m_KeyPrefab;
 
     private float m_CurrentHealth;
     private bool m_Dead;
@@ -48,6 +49,7 @@ public class CharacterHealth : MonoBehaviour
         m_ExplosionParticles.Play();
 
         gameObject.SetActive(false);
+        m_KeyPrefab.gameObject.SetActive(true);
     }
 
 
