@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public Text m_MessageText;
     public Text m_AmmoText;
     public int ammo;
-
+    public Text m_AmmoCounter;
 
 
     public GameObject[] m_Characters;
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
                 {
                     m_AmmoText.gameObject.SetActive(true);
                     m_MessageText.text = "";
+                    m_AmmoText.text = "Ammo: " + ammo;
 
                     m_GameState = GameState.Playing;
                     for (int i = 0; i < m_Characters.Length; i++)
@@ -74,8 +75,6 @@ public class GameManager : MonoBehaviour
 
                 m_gameTime += Time.deltaTime;
                 int seconds = Mathf.RoundToInt(m_gameTime);
-
-                //set format for Ammo??
 
 
                 if (OneCharacterLeft() == true)

@@ -13,8 +13,6 @@ public class RocketLauncher : MonoBehaviour
 
     private float fireTimer = 0;                    //keep track of when we can fire again
 
-    public GameObject rocketPrefab;                 //reference to Rocket prefab so we can spawn it
-
     public int ammo = 10;                           //number of rockets player has
 
     // Start is called before the first frame update

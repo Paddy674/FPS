@@ -17,9 +17,7 @@ public class CharacterHealth : MonoBehaviour
     private void Awake()
     {
 
-        m_ExplosionParticles =
-                Instantiate(m_ExplosionPrefab).GetComponent<ParticleSystem>();
-
+        m_ExplosionParticles = Instantiate(m_ExplosionPrefab).GetComponent<ParticleSystem>();
         m_ExplosionParticles.gameObject.SetActive(false);
     }
 
@@ -27,22 +25,11 @@ public class CharacterHealth : MonoBehaviour
     {
         m_CurrentHealth = m_StartingHealth;
         m_Dead = false;
-
-        SetHealthUI();
-
-    }
-
-    private void SetHealthUI()
-    {
-        //do this later
     }
 
     public void TakeDamage(float amount)
     {
-
         m_CurrentHealth -= amount;
-
-        SetHealthUI();
 
         if (m_CurrentHealth <= 0f && !m_Dead)
         {

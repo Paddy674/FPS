@@ -16,7 +16,6 @@ public class Rocket : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         Destroy(gameObject, m_MaxLifeTime);
     }
 
@@ -38,32 +37,26 @@ public class Rocket : MonoBehaviour
             }
         }
 
-        float CalculateDamage(Vector3 targetPosition)
-        {
-            Vector3 explositionToTarget = targetPosition - transform.position;
-            float explosionDistance = explositionToTarget.magnitude;
-
-            float relativeDistance = (m_ExplosionRadius - explosionDistance) / m_ExplosionRadius;
-
-            float damage = relativeDistance * m_MaxDamage;
-
-            damage = Mathf.Max(0f, damage);
-
-            return damage;
-        }
-
         m_ExplosionParticles.transform.parent = null;
         m_ExplosionParticles.Play();
         Destroy(m_ExplosionParticles.gameObject, m_ExplosionParticles.main.duration);
 
         Destroy(gameObject);
 
-
     }
 
-    // Update is called once per frame
-    void Update()
+    float CalculateDamage(Vector3 targetPosition)
     {
-        
+        Vector3 explositionToTarget = targetPosition - transform.position;
+        float explosionDistance = explositionToTarget.magnitude;
+
+        float relativeDistance = (m_ExplosionRadius - explosionDistance) / m_ExplosionRadius;
+
+        float damage = relativeDistance * m_MaxDamage;
+
+        damage = Mathf.Max(0f, damage);
+
+        return damage;
     }
+
 }
