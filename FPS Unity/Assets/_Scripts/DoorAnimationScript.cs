@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorAnimationScript : MonoBehaviour
 {
-
+    public bool m_HoldingKeyCard;
     Animator anim;
     
     // Start is called before the first frame update
@@ -24,13 +24,12 @@ public class DoorAnimationScript : MonoBehaviour
 
         WeaponSelector weaponSelector = other.gameObject.GetComponentInChildren<WeaponSelector>();
 
-        //add that weapon selector must have key
-
+        if (weaponSelector != null)
         if (other.gameObject.tag == "Player")
+        if (m_HoldingKeyCard == true)
         {
             anim.SetBool("IsOpen", true);
         }
-  
       
     }
 
