@@ -39,7 +39,7 @@ public class CharacterHealth : MonoBehaviour
        m_EthanGlasses.SetActive(false);
        m_EthanSkeleton.SetActive(false);
 
-        if (m_KeyPrefab.gameObject != null)
+        if (m_KeyPrefab.gameObject != null)             //check the character is holding a key
             {
             m_KeyPrefab.gameObject.SetActive(true); // if enemy destroyed enemy drops key
         }
