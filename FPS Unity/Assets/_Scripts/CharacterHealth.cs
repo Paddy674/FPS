@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,21 +7,12 @@ using UnityEngine.UI;
 public class CharacterHealth : MonoBehaviour
 {
     public float m_StartingHealth = 100f;
-
-    public GameObject m_ExplosionPrefab;
     public GameObject m_KeyPrefab;
-
     private float m_CurrentHealth;
     private bool m_Dead;
-
-    private ParticleSystem m_ExplosionParticles;
-
-    private void Awake()
-    {
-
-        m_ExplosionParticles = Instantiate(m_ExplosionPrefab).GetComponent<ParticleSystem>();
-        m_ExplosionParticles.gameObject.SetActive(false);
-    }
+    public GameObject m_EthanBody;
+    public GameObject m_EthanGlasses;
+    public GameObject m_EthanSkeleton;
 
     private void OnEnable()
     {
@@ -30,28 +22,29 @@ public class CharacterHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        m_CurrentHealth -= amount;
+        m_CurrentHealth -= amount;              //take damage float amount from current health
 
-        if (m_CurrentHealth <= 0f && !m_Dead)
+        if (m_CurrentHealth <= 0f && !m_Dead) //if characters health is less than 0 move to OnDeath function
         {
             OnDeath();
         }
 
     }
 
-    private void OnDeath()
+    private void OnDeath()  
     {
         m_Dead = true;
 
-        m_ExplosionParticles.transform.position = transform.position;
-        m_ExplosionParticles.gameObject.SetActive(true);
+       m_EthanBody.SetActive(false);
+       m_EthanGlasses.SetActive(false);
+       m_EthanSkeleton.SetActive(false);
 
-        m_ExplosionParticles.Play();
+        if (m_KeyPrefab.gameObject != null)
+            {
+            m_KeyPrefab.gameObject.SetActive(true); // if enemy destroyed enemy drops key
+        }
 
-        gameObject.SetActive(false);
-        m_KeyPrefab.gameObject.SetActive(true);
     }
-
 
     // Start is called before the first frame update
     void Start()

@@ -13,7 +13,9 @@ public class WeaponSelector : MonoBehaviour
     }
 
     //this is a list of the selectableweapon class. this is where the actual data is stored
-    public List<SelectableWeapon> weapons = new List<SelectableWeapon>();   
+    public List<SelectableWeapon> weapons = new List<SelectableWeapon>();
+
+    public GameObject ammoTextObject;
 
     // Update is called once per frame
     void Update()
@@ -74,5 +76,7 @@ public class WeaponSelector : MonoBehaviour
                 SelectWeapon(i);
             }
         }
+
+        ammoTextObject.SetActive(true);
     }
 }

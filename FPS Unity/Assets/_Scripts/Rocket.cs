@@ -7,56 +7,39 @@ public class Rocket : MonoBehaviour
 {
 
     public float m_MaxLifeTime = 2f;
-    public float m_MaxDamage = 34f;
-    public float m_ExplosionRadius = 5;
-    public float m_ExplosionForce = 100f;
+    public float damageAmount = 33f;
 
-    public ParticleSystem m_ExplosionParticles;
 
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, m_MaxLifeTime);
+        Destroy(gameObject, m_MaxLifeTime);     //if rocket doesn't hit anything destory it
     }
 
-    private void OnCollisionEnter (Collision other)
+    private void OnCollisionEnter(Collision collision)
     {
-        Rigidbody targetRigidbody = other.gameObject.GetComponent<Rigidbody>();
+        Rigidbody targetRigidbody = collision.gameObject.GetComponent<Rigidbody>(); //find a rigidbody to collide with (only characters)
 
-        if(targetRigidbody != null)
+        if (targetRigidbody != null)
         {
-            targetRigidbody.AddExplosionForce(m_ExplosionForce,
-                transform.position, m_ExplosionRadius);
 
-            CharacterHealth targetHealth = targetRigidbody.GetComponent<CharacterHealth>();
-
-            if(targetHealth != null)
+            if (collision.gameObject.tag == "Enemy")
             {
-                float damage = CalculateDamage(targetRigidbody.position);
-                targetHealth.TakeDamage(damage);
+                collision.gameObject.GetComponent<CharacterHealth>().TakeDamage(damageAmount); // if the collision object has a rigidbody and enemy tag turn it off
+                gameObject.SetActive(false);
             }
+            if (collision.gameObject.tag == "Player")
+            {
+                collision.gameObject.GetComponent<CharacterHealth>().TakeDamage(damageAmount); // if the collision object has a rigidbody and player tag turn it off
+                gameObject.SetActive(false);
+            }
+
+         else if(targetRigidbody == null)
+            {
+                gameObject.SetActive(false); // if the collision object doesn't have a rigidbody also turn it off
+            }
+
         }
 
-        m_ExplosionParticles.transform.parent = null;
-        m_ExplosionParticles.Play();
-        Destroy(m_ExplosionParticles.gameObject, m_ExplosionParticles.main.duration);
-
-        Destroy(gameObject);
-
     }
-
-    float CalculateDamage(Vector3 targetPosition)
-    {
-        Vector3 explositionToTarget = targetPosition - transform.position;
-        float explosionDistance = explositionToTarget.magnitude;
-
-        float relativeDistance = (m_ExplosionRadius - explosionDistance) / m_ExplosionRadius;
-
-        float damage = relativeDistance * m_MaxDamage;
-
-        damage = Mathf.Max(0f, damage);
-
-        return damage;
-    }
-
 }

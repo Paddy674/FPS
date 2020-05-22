@@ -5,9 +5,8 @@ using UnityEngine;
 public class EnemyFiring : MonoBehaviour
 {
 
-
-    public Rigidbody m_Rocket;
-    public Transform m_FireTransform;
+    public GameObject m_Rocket;
+    public GameObject m_Spawnpoint;
 
     public float m_LaunchForce = 40f;
 
@@ -45,11 +44,7 @@ public class EnemyFiring : MonoBehaviour
 
     private void Fire()
     {
-        Rigidbody rocketInstance = Instantiate(m_Rocket,
-            m_FireTransform.position,
-            m_FireTransform.rotation) as Rigidbody;
-
-        rocketInstance.velocity = m_LaunchForce * m_FireTransform.forward;
+        Instantiate(m_Rocket, m_Spawnpoint.transform.position, m_Spawnpoint.transform.rotation);
     }
 
     private void OnTriggerEnter(Collider other)

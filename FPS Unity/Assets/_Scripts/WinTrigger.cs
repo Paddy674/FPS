@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class WinTrigger : MonoBehaviour
 {
-    // Have we won the game yet?
+    // if not triggered, message is hidden
     private bool hasWon = false;
 
-    // Describes how the win message should be displayed.
+    // setup display message
     public GUIStyle winMessageStyle;
 
-    // Detects when we've entered the trigger and enables the text display.
+    // player enters trigger using tag
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -19,8 +19,6 @@ public class WinTrigger : MonoBehaviour
         }
     }
 
-    /// A quick and dirty way to display a win message in the middle of the 
-    /// current camera's view.
     void OnGUI()
     {
         if (hasWon)

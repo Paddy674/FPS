@@ -21,10 +21,16 @@ public class DoorAnimationScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        WeaponSelector weaponSelector = other.gameObject.GetComponentInChildren<WeaponSelector>();
+
+        //add that weapon selector must have key
+
         if (other.gameObject.tag == "Player")
         {
             anim.SetBool("IsOpen", true);
         }
+  
       
     }
 

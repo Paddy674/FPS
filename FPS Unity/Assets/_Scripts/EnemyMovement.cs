@@ -114,6 +114,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 m_NavAgent.isStopped = true;
             }
+
         }
 
     }
