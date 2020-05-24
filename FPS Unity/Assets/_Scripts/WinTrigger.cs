@@ -11,9 +11,6 @@ public class WinTrigger : MonoBehaviour
     // if not triggered, message is hidden
     private bool hasWon = false;
 
-    // setup display message
-    public GUIStyle winMessageStyle;
-
     // player enters trigger using tag
     void OnTriggerEnter(Collider other)
     {
