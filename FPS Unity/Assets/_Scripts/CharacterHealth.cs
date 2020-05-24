@@ -10,9 +10,8 @@ public class CharacterHealth : MonoBehaviour
     public GameObject m_KeyPrefab;
     private float m_CurrentHealth;
     private bool m_Dead;
-    public GameObject m_EthanBody;
-    public GameObject m_EthanGlasses;
-    public GameObject m_EthanSkeleton;
+    public bool m_HoldingKey = false;  //dictate that the player is not holding the key, we can update this in the key pickup script
+
 
     private void OnEnable()
     {
@@ -34,15 +33,8 @@ public class CharacterHealth : MonoBehaviour
     private void OnDeath()  
     {
         m_Dead = true;
-
-       m_EthanBody.SetActive(false);
-       m_EthanGlasses.SetActive(false);
-       m_EthanSkeleton.SetActive(false);
-
-        if (m_KeyPrefab.gameObject != null)             //check the character is holding a key
-            {
-            m_KeyPrefab.gameObject.SetActive(true); // if enemy destroyed enemy drops key
-        }
+       Instantiate(m_KeyPrefab, transform.position, transform.rotation); // when the character is dead, instantiate the key prefab (which need not be a child of character)
+       gameObject.SetActive(false); //turn off the player
 
     }
 

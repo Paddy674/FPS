@@ -48,7 +48,6 @@ public class RocketLauncher : MonoBehaviour
 
         Instantiate(m_Rocket, m_Spawnpoint.transform.position, m_Spawnpoint.transform.rotation);
 
-
         fireTimer = 0;                                                          //reset the fire timer
         ammo -= 1;                                                              //reduce ammo count
         ammoText.text = "Ammo: " + ammo;

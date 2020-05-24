@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinTrigger : MonoBehaviour
 {
+
+    public string _sceneName = string.Empty; //declare multiple scene names exist
+
     // if not triggered, message is hidden
     private bool hasWon = false;
 
@@ -23,7 +27,7 @@ public class WinTrigger : MonoBehaviour
     {
         if (hasWon)
         {
-            GUI.Label(Camera.main.pixelRect, "You Escaped", winMessageStyle);
+            SceneManager.LoadScene(_sceneName);
         }
     }
 }

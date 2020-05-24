@@ -4,30 +4,26 @@ using UnityEngine;
 
 public class KeyCardPickup : MonoBehaviour
 {
-    public string weaponName = string.Empty;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) // function reliant on trigger
     {
-        //does this object that collided with us have a weaponselector
-        WeaponSelector weaponSelector = other.gameObject.GetComponentInChildren<WeaponSelector>();
-
-        //if there is a weaponselector, tell it to mark this weapon as collected
-        if (weaponSelector != null)
+        if (other.gameObject.tag == "Player") //is the trigger the player?
         {
-            weaponSelector.CollectWeapon(weaponName);
-            gameObject.SetActive(false);
+            other.gameObject.GetComponent<CharacterHealth>().m_HoldingKey = true; //if so set the holding key boolean in the character health script to true and then destroy the object in the scene
+            Destroy(gameObject);
         }
 
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }
+

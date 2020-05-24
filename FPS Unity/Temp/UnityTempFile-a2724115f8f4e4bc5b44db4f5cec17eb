@@ -312,6 +312,8 @@
 "Assets/_Scripts/EnemyFiring.cs"
 "Assets/_Scripts/EnemyMovement.cs"
 "Assets/_Scripts/KeyCardPickup.cs"
+"Assets/_Scripts/Menu/ButtonLoadScene.cs"
+"Assets/_Scripts/Menu/ButtonQuitApplication.cs"
 "Assets/_Scripts/Rocket.cs"
 "Assets/_Scripts/RocketAmmoPickup.cs"
 "Assets/_Scripts/RocketLauncher.cs"
